@@ -22,6 +22,7 @@
     <div style="color: red" th:if="${#fields.hasErrors('publish_year')}" th:errors="*{publish_year}">Year Error</div>
     <br>
 
+    <input type="hidden" th:field="*{book_id}">
     <input type="hidden" th:field="*{client_id}">
     <input type="submit" value="Edit">
 </form>
