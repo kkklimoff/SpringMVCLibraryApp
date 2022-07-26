@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+</head>
+<body>
+<a th:href="@{/clients}">Back</a>
+<p th:text="${client.getName() + ', ' + client.getBirth_year()}">CLIENT INFO</p>
+<p th:if="${#lists.isEmpty(clientsBooks)}">This client currently has no books</p>
+<div th:unless="${#lists.isEmpty(clientsBooks)}">
+    <hr>
+    <h3>Books:</h3>
+    <div th:each="book : ${clientsBooks}">
+        <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getPublish_year()}"
+        th:href="@{/books/{id}(id = ${book.getBook_id()})}"></a>
+    </div>
+</div>
+<hr>
+<a th:href="@{/clients/{id}/edit(id = ${client.getClient_id()})}">Edit</a>
+<form th:method="DELETE" th:action="@{/clients/{id}(id = ${client.getClient_id()})}">
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>
