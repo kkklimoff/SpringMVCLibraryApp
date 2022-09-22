@@ -72,7 +72,24 @@ public class BooksController {
                          BindingResult bindingResult)
     {
         if (bindingResult.hasErrors()) return "books/edit";
+        updatedBook.setClient_id(bookDao.getBookById(id).get().getClient_id());
         bookDao.updateBook(id, updatedBook);
+        return "redirect:/books/"+id;
+    }
+
+    @PatchMapping("/{id}/assign")
+    public String assign(@PathVariable("id") int id,
+                       @ModelAttribute("book") Book updatedBook)
+    {
+        bookDao.assignBook(id, updatedBook.getClient_id());
+        return "redirect:/books/"+id;
+    }
+
+    @PatchMapping("/{id}/free")
+    public String free(@PathVariable("id") int id,
+                         @ModelAttribute("book") Book updatedBook)
+    {
+        bookDao.freeBook(id);
         return "redirect:/books/"+id;
     }
 

@@ -26,7 +26,7 @@ public class ClientDao
 
     public Optional<Client> getClientById(int id){
         return jdbcTemplate.query("SELECT * FROM Clients WHERE client_id = ?",
-                new Object[] {id}, new BeanPropertyRowMapper<>(Client.class)).stream().findAny();
+                new BeanPropertyRowMapper<>(Client.class), id).stream().findAny();
     }
 
     public Optional<Client> getClientByName(String name){

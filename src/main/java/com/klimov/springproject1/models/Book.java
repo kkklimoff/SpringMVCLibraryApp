@@ -1,10 +1,7 @@
 package com.klimov.springproject1.models;
 
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Book {
 
@@ -19,8 +16,10 @@ public class Book {
     @Pattern(regexp = "[A-Z]\\w+ [A-Z]\\w+", message = "Author's name should be in format \"Name Surname\"")
     private String author;
 
+    @Min(value = 0, message = "No books written before the year 0")
     @Max(value = 2022, message = "No books from the future!")
-    private int publish_year;
+    @NotNull(message = "Year of publishing can't be empty!")
+    private Integer publish_year;
 
     private Integer client_id;
 

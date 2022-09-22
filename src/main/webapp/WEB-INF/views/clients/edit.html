@@ -15,7 +15,6 @@
     <input type="number" th:field="*{birth_year}" id="birth_year">
     <div style="color: red" th:if="${#fields.hasErrors('birth_year')}" th:errors="*{birth_year}">Year Error</div>
     <br>
-    <input type="hidden" th:field="*{client_id}">
     <input type="submit" value="Update">
 </form>
 </body>
